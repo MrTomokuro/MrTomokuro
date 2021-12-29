@@ -11,12 +11,25 @@ module.exports.render = (data) => //html
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+		<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 	</head>
 	
 	<body>
 	<main>
 	${data.content}
 	</main>
+	<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 	</body>
 	
 	</html>`;
