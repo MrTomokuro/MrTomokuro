@@ -24,5 +24,11 @@ module.exports = {
       },
       __key: "images",
     },
+    {
+      resolve: "gatsby-source-hashnode",
+      options: {
+        username: "tomokuro",
+      },
+    },
   ],
 };
