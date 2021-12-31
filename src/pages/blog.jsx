@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/layout'
 
 const BlogPage = ({ data }) => {
@@ -9,11 +8,10 @@ const BlogPage = ({ data }) => {
       {
         data.allHashNodePost.edges.map(edge => (
           <article key={edge.node.slug}>
-            <h2> {edge.node.title}</h2>
+            <h2> 
+              <a href={`${data.site.siteMetadata.blogUrl}/${edge.node.slug}`} target="_blank" rel="noopener noreferrer">{edge.node.title}</a>
+            </h2>
             <p>Posted: {edge.node.dateAdded}</p>
-            {/* <MDXRenderer> */}
-              {edge.node.contentMarkdown}
-            {/* </MDXRenderer> */}
           </article>
         ))
       }
@@ -38,9 +36,13 @@ query  {
         }
         slug
         dateAdded
-        contentMarkdown
         brief
       }
+    }
+  }
+  site {
+    siteMetadata {
+      blogUrl
     }
   }
 }
